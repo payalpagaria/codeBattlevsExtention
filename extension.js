@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const {handleBattle}= require('./commands/handleBattle')
 const {handleBeginChallenge}=require('./commands/handleBeginChallenge')
+const axios=require('axios')
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 
@@ -26,10 +27,24 @@ function activate(context) {
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello vs Code');
 	});
+	const data1 = vscode.commands.registerCommand('codebattle.fetchdata', 
+	async function () {
+		try {
+			const res= await axios.get('http://localhost:8000/');
+			if(res){
+				vscode.window.showInformationMessage(res.data.message);
+
+			}
+
+		} catch (error) {
+			vscode.window.showInformationMessage(error);
+
+		}
+	});
 	const battleText=vscode.commands.registerCommand('codebattle.heyJoin',handleBattle)
 	const beginBattle=vscode.commands.registerCommand('codebattle.beginChallenge',handleBeginChallenge)
 
-	context.subscriptions.push(disposable,battleText,beginBattle);
+	context.subscriptions.push(disposable,battleText,beginBattle,data1);
 }
 
 
