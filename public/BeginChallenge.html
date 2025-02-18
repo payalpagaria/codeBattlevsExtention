@@ -1,0 +1,54 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMirror Editor Fix</title>
+    
+    <!-- Include CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"> <!-- Optional Theme -->
+
+    <style>
+        .CodeMirror {
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+  <h1>Challenege Begin</h1>
+  <p>Below provided a question</p>
+  <p>comment all the text and solve the question</p>
+  <p>Given an array arr[] of size N and an integer K. Find the maximum for each and every contiguous subarray of size K.</p>
+
+
+    
+    <textarea id="code-editor">// Write your code here...</textarea>
+
+    <!-- Include CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+
+    <script>
+        // Ensure CodeMirror initializes properly
+        document.addEventListener("DOMContentLoaded", function () {
+            const editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                mode: "javascript",  
+                lineNumbers: true,   
+                theme: "dracula",    // Change theme if needed
+                matchBrackets: true  
+            });
+
+            // Example: Log content to console
+            editor.on("change", () => {
+                console.log(editor.getValue());
+            });
+        });
+    </script>
+
+</body>
+</html>

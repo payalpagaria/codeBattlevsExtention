@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Battle</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh; width: auto;">
+    <form id="battleForm" style="display: flex; flex-direction: column; gap:1rem;">
+        <label>Enter the Code</label>
+        <input type="text" required placeholder="Enter the code" id="codeInput" />
+
+        <label>Enter the Name</label>
+        <input type="text" required placeholder="Enter your name" id="nameInput" />
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const vscode = acquireVsCodeApi(); // ✅ Ensure VS Code API is available
+
+        document.getElementById('battleForm').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent page refresh
+
+            // ✅ Get input values
+            const code = document.getElementById('codeInput').value;
+            const name = document.getElementById('nameInput').value;
+
+            console.log("Sending data to VS Code extension:", { code, name });
+
+            // ✅ Send data to the VS Code extension
+            vscode.postMessage({
+                command: 'joinBattle',
+                code: code,
+                name: name
+            });
+        });
+    </script>
+</body>
+</html>
